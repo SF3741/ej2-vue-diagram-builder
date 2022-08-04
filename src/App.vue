@@ -186,7 +186,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6 db-col-right">
+                                <div class="col-xs-6 db-col-right">
                                 <div class="db-text-container">
                                     <div class="db-text">
                                         <span>H</span>
@@ -196,49 +196,683 @@
                                     </div>
                                 </div>
                             </div>
+                          </div>
+                            <div class="row db-prop-row">
+                            <div class="col-xs-6 db-col-left">
+                                <div class="db-color-container">
+                                    <div class="db-color-input">
+                                       <ejs-colorpicker mode="Palette" width="100%"  value="255" ></ejs-colorpicker>
+                                    </div>
+                                    <div class="db-color-btn">
+                                        <ejs-button iconCss='sf-icon-ColorPickers tb-icons'>
+                                        </ejs-button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                   </div>
-               </div>
-            </div>
+                         <div class="row db-prop-row">
+                            <ejs-checkbox id='showPageBreaks' label="Page Breaks" checked="true" >
+                            </ejs-checkbox>
+                        </div>
+                    </div>
+                   <div id='nodePropertyContainer' class="db-node-prop-container" style="display:none">
+                     <div class="db-node-behaviour-prop">
+                            <div class="row db-prop-header-text">
+                                Dimensions
+                            </div>
+                            <div class="row db-prop-row">
+                                <div class="col-xs-6 db-col-left">
+                                    <div class="db-text-container">
+                                        <div class="db-text">
+                                            <span>X</span>
+                                        </div>
+                                        <div class="db-text-input">
+                                            <ejs-numerictextbox id="nodeOffsetX" format="n0" ></ejs-numerictextbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 db-col-right">
+                                    <div class="db-text-container">
+                                        <div class="db-text">
+                                            <span>Y</span>
+                                        </div>
+                                        <div class="db-text-input">
+                                            <ejs-numerictextbox id="nodeOffsetY" format="n0" ></ejs-numerictextbox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row db-prop-row">
+                                <div class="col-xs-6 db-col-left">
+                                    <div class="db-text-container">
+                                        <div class="db-text">
+                                            <span>W</span>
+                                        </div>
+                                        <div class="db-text-input">
+                                            <ejs-numerictextbox id="nodeWidth" min="1" format="n0" ></ejs-numerictextbox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 db-col-right">
+                                    <div class="db-text-container">
+                                        <div class="db-text">
+                                            <span>H</span>
+                                        </div>
+                                        <div class="db-text-input">
+                                            <ejs-numerictextbox id="nodeHeight" min="1" format="n0" ></ejs-numerictextbox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="row db-prop-row">
+                                <div class="col-xs-6 db-col-left">
+                                    <ejs-checkbox id='aspectRatio' label="Aspect Ratio" ></ejs-checkbox>
+                                </div>
+                            </div>
+                          <div class="row db-prop-row">
+                                <div class="col-xs-6 db-col-left">
+                                    <span class="db-prop-text-style">Rotate</span>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-xs-6 db-col-left">
+                                    <div class="db-text-container">
+                                        <div class="db-text">
+                                            <ejs-button iconCss='sf-icon-Rotate1 tb-icons'>
+                                            </ejs-button>
+                                        </div>
+                                        <div class="db-text-input">
+                                            <ejs-numerictextbox id="nodeRotateAngle" format="n0" ></ejs-numerictextbox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="db-prop-separator">
+                            </div>
+                            <div class="row db-prop-header-text">
+                                Insert
+                            </div>
+                          <div class="row db-prop-row">
+                                <div class="col-xs-6 db-col-left">
+                                    <ejs-toolbar id='toolbarNodeInsert'  overflowMode='Scrollable' >
+                                        <e-items>
+                                            <e-item prefixIcon="sf-icon-InsertLink tb-icons" tooltipText="Insert Link" cssClass="tb-item-start">
+                                            </e-item>
+                                            <e-item prefixIcon="sf-icon-InsertImage tb-icons" tooltipText="Insert Image" cssClass="tb-item-end">
+                                            </e-item>
+                                        </e-items>
+                                    </ejs-toolbar>
+                                </div>
+                            </div>
+                          <div class="db-prop-separator">
+                            </div>
+                        </div>
+                        <div id='nodeStyleProperties' class="db-node-style-prop">
+                            <div class="row db-background-style">
+                                <div class="row db-prop-header-text">
+                                    Background and Border Styles
+                                </div>
+                        <div class="row db-prop-row">
+                                    <div class="col-xs-6 db-col-left">
+                                        <div class="db-color-container">
+                                            <div class="db-color-input">
+                                                <ejs-colorpicker id="nodeFillColor" type="color" mode="Palette" ></ejs-colorpicker>
+                                            </div>
+                                            <div class="db-color-btn">
+                                                <ejs-button iconCss='sf-icon-ColorPickers tb-icons'>
+                                                </ejs-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                      <div id='gradientStyle' class="row db-prop-row db-gradient-style-hide">
+                                    <div class="col-xs-4 db-col-left">
+                                        <ejs-checkbox id='gradient' label="Gradient" ></ejs-checkbox>
+                                    </div>
+                                    <div class="col-xs-4 db-col-center">
+                                        <ejs-dropdownlist  :dataSource='dataSource'
+                                            fields='fields' popupWidth='200px'>
+                                        </ejs-dropdownlist>
+                                    </div>
+                                    <div class="col-xs-4 db-col-right">
+                                        <div class="db-color-container">
+                                            <div class="db-color-input">
+                                                <ejs-colorpicker id="nodeGradientColor" type="color" mode="Palette"
+                                                ></ejs-colorpicker>
+                                            </div>
+                                            <div class="db-color-btn">
+                                                <ejs-button iconCss='sf-icon-ColorPickers tb-icons'>
+                                                </ejs-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      <div class="row db-border-style">
+                        <div class="row db-prop-header-text db-border-style-header">
+                                    Border/Line Styles
+                                </div>
+                                <div class="row db-prop-row">
+                                    <div class="col-xs-4 db-col-right">
+                                        <span class="db-prop-text-style">Stroke Color</span>
+                                    </div>
+                                    <div class="col-xs-4 db-col-center">
+                                        <span class="db-prop-text-style">Stroke Style</span>
+                                    </div>
+                                    <div class="col-xs-4 db-col-left">
+                                        <span class="db-prop-text-style">Stroke Width</span>
+                                    </div>
+                                </div> -->
+                          <div class="row">
+                                    <div class="col-xs-4 db-col-left">
+                                        <div class="db-color-container">
+                                            <div class="db-color-input">
+                                                <ejs-colorpicker id="nodeStrokeColor" type="color" mode="Palette"
+                                                > </ejs-colorpicker>
+                                            </div>
+                                            <div class="db-color-btn">
+                                                <ejs-button iconCss='sf-icon-Pickers tb-icons'>
+                                                </ejs-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 db-col-center">
+                                        <ejs-dropdownlist id="nodeBorderStyle"   :dataSource='dataSource'
+                                            popupWidth='160px' :fields='fields' :itemTemplate =" `<span><span class='db-ddl-template-style'>{{className}}</span></span>`"
+                                      :valueTemplate ="`<span><span class='db-ddl-template-style'>{{className}}</span></span>`">
+                                      </ejs-dropdownlist>
+                                    </div>
+                                    <div class="col-xs-4 db-col-right">
+                                        <ejs-numerictextbox id="nodeStrokeWidth" min="0" step="0.5" ></ejs-numerictextbox>
+                                    </div>
+                                </div>
+                              <div class="row db-prop-row">
+                                    <div class="col-xs-2 db-col-right db-prop-text-style" style="padding-top: 6px">
+                                        <span class="db-prop-text-style">Opacity</span>
+                                    </div>
+                                    <div class="col-xs-8 db-col-left" style="padding-right:10px">
+                                        <ejs-slider  min='0' max='100' step='10' type='MinRange'>
+                                        </ejs-slider>
+                                    </div>
+                                    <div class="col-xs-2 db-col-right">
+                                        <input type="text"  readOnly="true" class="db-readonly-input" />
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div id='connectorPropertyContainer' class="db-connector-prop-container" style="display:none">
+                        <div class="row db-prop-header-text">
+                            Connector Properties
+                        </div>
+                         <div class="row db-prop-row">
+                            <div class="col-xs-6 db-col-left db-prop-text-style">
+                                <span class="db-prop-text-style">Connector Type</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 db-col-left">
+                                <ejs-dropdownlist  :dataSource='dataSource' :fields='fields'>
+                                </ejs-dropdownlist>
+                            </div>
+                        </div>
+                        <div class="row db-prop-row">
+                            <div class="col-xs-6 db-col-left">
+                                <div class="db-color-container">
+                                    <div class="db-color-input">
+                                        <ejs-colorpicker id="lineColor" mode="Palette" type="color"
+                                        ></ejs-colorpicker>
+                                    </div>
+                                    <div class="db-color-btn">
+                                        <ejs-button iconCss='sf-icon-Pickers tb-icons'>
+                                        </ejs-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="row db-prop-row">
+                            <div class="col-xs-8 db-col-left db-prop-text-style">
+                                <span class="db-prop-text-style">Stroke Style</span>
+                            </div>
+                            <div class="col-xs-4 db-col-right db-prop-text-style">
+                                <span class="db-prop-text-style">Thickness</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 db-col-left">
+                                <ejs-dropdownlist id="lineStyle"   :dataSource='dataSource' :fields='fields'
+                                 :itemTemplate =" `<span><span class='db-ddl-template-style'>{{data.className}}</span></span>`"
+                                      :valueTemplate ="`<span><span class='db-ddl-template-style'>{{data.className}}</span></span>`"  >
+                                </ejs-dropdownlist>
+                            </div>
+                            <div class="col-xs-4 db-col-right">
+                                <ejs-numerictextbox min="0.5" step="0.5" ></ejs-numerictextbox>
+                            </div>
+                        </div>
+                        <div class="row db-prop-row">
+                            <div class="col-xs-8 db-col-left db-prop-text-style">
+                                <span class="db-prop-text-style">Start Arrow</span>
+                            </div>
+                            <div class="col-xs-4 db-col-right db-prop-text-style">
+                                <span class="db-prop-text-style">Size</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 db-col-left">
+                                <ejs-dropdownlist :dataSource='dataSource' :fields='fields'>
+                                </ejs-dropdownlist>
+                            </div>
+                            <div class="col-xs-4 db-col-right">
+                                <ejs-numerictextbox min="1" step="1" ></ejs-numerictextbox>
+                            </div>
+                        </div>
+                        <div class="row db-prop-row">
+                            <div class="col-xs-8 db-col-left db-prop-text-style">
+                                <span class="db-prop-text-style">End Arrow</span>
+                            </div>
+                            <div class="col-xs-4 db-col-right db-prop-text-style">
+                                <span class="db-prop-text-style">Size</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 db-col-left">
+                                <ejs-dropdownlist :dataSource='dataSource' :fields='fields'>
+                                </ejs-dropdownlist>
+                            </div>
+                            <div class="col-xs-4 db-col-right">
+                                <ejs-numerictextbox min="1" step="1" ></ejs-numerictextbox>
+                            </div>
+                        </div>
+                        <div class="row db-prop-row">
+                            <div class="col-xs-8 db-col-left" style="margin-top:5px">
+                                <ejs-checkbox id='lineJump' label="Bridging" checked="true"></ejs-checkbox>
+                            </div>
+                            <div class="col-xs-4 db-col-right" id="lineJumpSizeDiv" style="display:none">
+                                <ejs-numerictextbox min="1" step="1" ></ejs-numerictextbox>
+                            </div>
+                        </div>
+                      <div class="row db-prop-row">
+                            <div class="col-xs-2 db-col-right db-prop-text-style" style="padding-top: 6px">
+                                <span class="db-prop-text-style">Opacity</span>
+                            </div>
+                            <div class="col-xs-8 db-col-left" style="padding-right:10px">
+                                <ejs-slider id='default' min='0' max='100' step='10' type='MinRange'>
+                                </ejs-slider>
+                            </div>
+                            <div class="col-xs-2 db-col-right">
+                                <input type="text"  readonly="true" class="db-readonly-input" />
+                            </div>
+                        </div>
+                    </div>
+            <div id='textPropertyContainer' class="db-text-prop-container" style="display:none">
+                        <div class="db-prop-separator">
+                        </div>
+                        <div class="row db-prop-header-text">
+                            Text
+                        </div>
+                        <div class="row db-prop-row">
+                            <div class="col-xs-8 db-col-left">
+                                <ejs-dropdownlist id="fontFamily" height='34px'  :dataSource='dataSource' :fields='fields'
+                                    >
+                                </ejs-dropdownlist>
+                            </div>
+                            <div class="col-xs-4 db-col-right">
+                                <ejs-numerictextbox min="1" step="1" ></ejs-numerictextbox>
+                            </div>
+                        </div>
+                        <div class="row db-prop-row">
+                            <div class="col-xs-6 db-col-left" id="textPositionDiv">
+                                <ejs-dropdownlist id="ddlTextPosition"  :dataSource='dataSource' :fields='fields'>
+                                </ejs-dropdownlist>
+                            </div>
+                            <div class="col-xs-6 db-col-right" id="textColorDiv">
+                                <div class="db-color-container">
+                                    <div class="db-color-input">
+                                        <ejs-colorpicker id='textColor'  mode="Palette" type="color"  ></ejs-colorpicker>
+                                    </div>
+                                    <div class="db-color-btn">
+                                        <ejs-button iconCss='sf-icon-ColorPickers tb-icons'>
+                                        </ejs-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row db-prop-row">
+                            <div class="col-xs-6 db-col-left">
+                                <ejs-toolbar id='toolbarTextStyle' overflowMode='Scrollable' >
+                                    <e-items>
+                                        <e-item prefixIcon="sf-icon-Bold tb-icons" tooltipText="Bold" cssClass="tb-item-start">
+                                        </e-item>
+                                        <e-item prefixIcon="sf-icon-Italic tb-icons" tooltipText="Italic" cssClass="tb-item-middle">
+                                        </e-item>
+                                        <e-item prefixIcon="sf-icon-Underline tb-icons" tooltipText="Underline" cssClass="tb-item-end">
+                                        </e-item>
+                                    </e-items>
+                                </ejs-toolbar>
+                            </div>
+                            <div class="col-xs-6 db-col-right">
+                                <ejs-toolbar id='toolbarTextSubAlignment' overflowMode='Scrollable' >
+                                    <e-items>
+                                        <e-item prefixIcon="sf-icon-ParaAlignLeft tb-icons" tooltipText="Align Text Left" cssClass="tb-item-start">
+                                        </e-item>
+                                        <e-item prefixIcon="sf-icon-ParaAlignCenter tb-icons" tooltipText="Align Text Center" cssClass="tb-item-middle">
+                                        </e-item>
+                                        <e-item prefixIcon="sf-icon-ParaAlignRight tb-icons" tooltipText="Align Text Right" cssClass="tb-item-end">
+                                        </e-item>
+                                    </e-items>
+                                </ejs-toolbar>
+                            </div>
+                        </div>
+                        <div class="row db-prop-row" id='toolbarTextAlignmentDiv'>
+                            <ejs-toolbar id='toolbarTextAlignment' overflowMode='Scrollable' >
+                                <e-items>
+                                    <e-item prefixIcon="sf-icon-TextLeft tb-icons" tooltipText="Align Right" cssClass="tb-item-start">
+                                    </e-item>
+                                    <e-item prefixIcon="sf-icon-TextVerticalCenter tb-icons" tooltipText="Align Center" cssClass="tb-item-middle">
+                                    </e-item>
+                                    <e-item prefixIcon="sf-icon-TextRight tb-icons" tooltipText="Align Left" cssClass="tb-item-middle">
+                                    </e-item>
+                                    <e-item prefixIcon="sf-icon-TextTop tb-icons" tooltipText="Align Bottom" cssClass="tb-item-middle">
+                                    </e-item>
+                                    <e-item prefixIcon="sf-icon-TextHorizontalCenter tb-icons" tooltipText="Align Middle" cssClass="tb-item-middle">
+                                    </e-item>
+                                    <e-item prefixIcon="sf-icon-TextBottom tb-icons" tooltipText="Align Top" cssClass="tb-item-end">
+                                    </e-item>
+                                </e-items>
+                            </ejs-toolbar>
+                        </div>
+                        <div class="row db-prop-row">
+                            <div class="col-xs-2 db-col-right db-prop-text-style" style="padding-top: 6px">
+                                <span class="db-prop-text-style">Opacity</span>
+                            </div>
+                            <div class="col-xs-8 db-col-left" style="padding-right:10px">
+                                <ejs-slider  min='0' max='100' step='10' type='MinRange'>
+                                </ejs-slider>
+                            </div>
+                            <div class="col-xs-2 db-col-right">
+                                <input id='textOpacityText' type="text" class="db-readonly-input" readOnly="true"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         <div id='mindMapContainer' class="db-mindmap-prop-container">
+                    <div class="row db-prop-header-text">
+                        MindMap Pattern
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="mindmap-pattern-style mindmap-pattern1"></div>
+                        </div>
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="mindmap-pattern-style mindmap-pattern2"></div>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row" style="margin-top:5px">
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="mindmap-pattern-style mindmap-pattern3"></div>
+                        </div>
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="mindmap-pattern-style mindmap-pattern4"></div>
+                        </div>
+                    </div>
+                    <div class="db-prop-separator">
+                    </div>
+                    <div class="row db-prop-header-text">
+                        MindMap Levels Styles
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-6 db-col-left">
+                            <ejs-dropdownlist id="mindMapLevels"   :dataSource='dataSource' :fields='fields'
+                                >
+                            </ejs-dropdownlist>
+                        </div>
+                    </div>
+                    <div id='mindMapFill' class="row db-prop-row">
+                        <div class="col-xs-6 db-col-left">
+                            <div class="db-color-container">
+                                <div class="db-color-input">
+                                    <ejs-colorpicker id='mindmapFill'  mode="Palette"  type="color" ></ejs-colorpicker>
+                                </div>
+                                <div class="db-color-btn">
+                                    <ejs-button iconCss='sf-icon-ColorPickers tb-icons'>
+                                    </ejs-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-4 db-col-left">
+                            <div class="db-color-container">
+                                <div class="db-color-input">
+                                    <ejs-colorpicker id='mindmapStroke'  mode="Palette" type="color" ></ejs-colorpicker>
+                                </div>
+                                <div class="db-color-btn">
+                                    <ejs-button iconCss='sf-icon-Pickers tb-icons'>
+                                    </ejs-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 db-col-center">
+                            <ejs-dropdownlist  :dataSource='dataSource' :fields='fields'
+                                popupWidth='160px' :itemTemplate =" `<span><span class='db-ddl-template-style'>{{data.className}}</span></span>`"
+                                      :valueTemplate ="`<span><span class='db-ddl-template-style'>{{data.className}}</span></span>`" >
+                         </ejs-dropdownlist>
+                        </div>
+                        <div class="col-xs-4 db-col-right">
+                            <ejs-numerictextbox min="0.5" step="0.5" ></ejs-numerictextbox>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-2 db-col-right db-prop-text-style" style="padding-top: 6px">
+                            <span class="db-prop-text-style">Opacity</span>
+                        </div>
+                        <div class="col-xs-8 db-col-left" style="padding-right:10px">
+                            <ejs-slider min='0' max='100' step='10' type='MinRange'>
+                            </ejs-slider>
+                        </div>
+                        <div class="col-xs-2 db-col-right">
+                            <input type="text" readOnly="true"  class="db-readonly-input" />
+                        </div>
+                    </div>
+                    <div style="margin-top:10px;margin-bottom: 15px"></div>
+                    <div class="row db-prop-header-text">
+                        Text Style
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-8 db-col-left">
+                            <ejs-dropdownlist height='34px'  :dataSource='dataSource' :fields='fields'>
+                            </ejs-dropdownlist>
+                        </div>
+                        <div class="col-xs-4 db-col-right">
+                            <ejs-numerictextbox min="1" step="1"></ejs-numerictextbox>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-6 db-col-left">
+                            <ejs-toolbar overflowMode='Scrollable' >
+                                <e-items>
+                                    <e-item prefixIcon="sf-icon-Bold tb-icons" tooltipText="Bold" cssClass="tb-item-start">
+                                    </e-item>
+                                    <e-item prefixIcon="sf-icon-Italic tb-icons" tooltipText="Italic" cssClass="tb-item-middle">
+                                    </e-item>
+                                    <e-item prefixIcon="sf-icon-Underline tb-icons" tooltipText="Underline" cssClass="tb-item-end">
+                                    </e-item>
+                                </e-items>
+                            </ejs-toolbar>
+                        </div>
+                        <div class="col-xs-6 db-col-right" id="textColorDiv">
+                            <div class="db-color-container">
+                                <div class="db-color-input">
+                                    <ejs-colorpicker id='mindmapTextColor' mode="Palette" type="color" ></ejs-colorpicker>
+                                </div>
+                                <div class="db-color-btn">
+                                    <ejs-button iconCss='sf-icon-ColorPickers tb-icons'>
+                                    </ejs-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-2 db-col-right db-prop-text-style" style="padding-top: 6px">
+                            <span class="db-prop-text-style">Opacity</span>
+                        </div>
+                        <div class="col-xs-8 db-col-left" style="padding-right:10px">
+                            <ejs-slider  min='0' max='100' step='10' type='MinRange'>
+                            </ejs-slider>
+                        </div>
+                        <div class="col-xs-2 db-col-right">
+                            <input type="text"  class="db-readonly-input" readOnly="true" />
+                        </div>
+                    </div>
+                </div>
+               <div id='orgChartContainer' class="db-orgchart-prop-container">
+                    <div class="row db-prop-row db-prop-header-text">
+                        Import
+                    </div>
+                    <div class="row db-prop-row" style="height:28px">
+                        <ejs-button id="btnImportData" content="Import Data" cssClass="db-btn-primary" >
+                        </ejs-button>
+                    </div>
+                    <div class="db-prop-separator">
+                    </div>
+                    <div class="row db-prop-header-text">
+                        OrgChart Settings
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-6 db-col-left">
+                            <span class="db-prop-text-style">Horizontal Spacing</span>
+                        </div>
+                        <div class="col-xs-6 db-col-right">
+                            <span class="db-prop-text-style">Vertical Spacing</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 db-col-left">
+                            <ejs-numerictextbox id="orgHorizontalSpacing" min="25" step="1" format="n0" value="50" ></ejs-numerictextbox>
+                        </div>
+                        <div class="col-xs-6 db-col-right">
+                            <ejs-numerictextbox id="orgVerticalSpacing" min="25" step="1" format="n0" value="50" ></ejs-numerictextbox>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row">
+                        <ejs-toolbar id='orgChartAlignment' overflowMode='Scrollable' >
+                            <e-items>
+                                <e-item prefixIcon="sf-icon-TextLeft tb-icons" tooltipText="Align Left" cssClass="tb-item-start">
+                                </e-item>
+                                <e-item prefixIcon="sf-icon-TextHorizontalCenter tb-icons" tooltipText="Align Center" cssClass="tb-item-middle">
+                                </e-item>
+                                <e-item prefixIcon="sf-icon-TextRight tb-icons" tooltipText="Align Right" cssClass="tb-item-middle">
+                                </e-item>
+                                <e-item prefixIcon="sf-icon-TextTop tb-icons" tooltipText="Align Top" cssClass="tb-item-middle">
+                                </e-item>
+                                <e-item prefixIcon="sf-icon-TextVerticalCenter tb-icons" tooltipText="Align Middle" cssClass="tb-item-middle">
+                                </e-item>
+                                <e-item prefixIcon="sf-icon-TextBottom tb-icons" tooltipText="Align Bottom" cssClass="tb-item-end">
+                                </e-item>
+                            </e-items>
+                        </ejs-toolbar>
+                    </div>
+                    <div class="db-prop-separator">
+                    </div>
+                    <div class="row db-prop-row db-prop-header-text">
+                        Orientation Styles
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="org-pattern-style org-pattern-1 vertical-alternate"
+                                style="background-image: url('./assets/dbstyle/orgchart_images/org-pattern1.svg')">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="org-pattern-style org-pattern-2 vertical-left"
+                                style="background-image: url('./assets/dbstyle/orgchart_images/org-pattern2.svg')"></div>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row" style="margin-top:5px">
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="org-pattern-style org-pattern-3 vertical-right"
+                                style="background-image: url('./assets/dbstyle/orgchart_images/org-pattern3.svg')"></div>
+                        </div>
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="org-pattern-style org-pattern-4 horizontal-center"
+                                style="background-image: url('./assets/dbstyle/orgchart_images/org-pattern4.svg')"></div>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row" style="margin-top:5px">
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="org-pattern-style org-pattern-5 horizontal-right"
+                                style="background-image: url('./assets/dbstyle/orgchart_images/org-pattern5.svg');"></div>
+                        </div>
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div  class="org-pattern-style org-pattern-6 horizontal-left"
+                                style="background-image: url('./assets/dbstyle/orgchart_images/org-pattern6.svg')"></div>
+                        </div>
+                    </div>
+                    <div class="db-prop-separator">
+                    </div>
+                    <div class="row db-prop-header-text">
+                        OrgChart Templates
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div id="orgPattern1"  class="org-pattern-style"></div>
+                        </div>
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div id="orgPattern2"  class="org-pattern-style"></div>
+                        </div>
+                    </div>
+                    <div class="row db-prop-row">
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div id="orgPattern3"  class="org-pattern-style"></div>
+                        </div>
+                        <div class="col-xs-6 org-pattern-parent">
+                            <div id="orgPattern4"  class="org-pattern-style"></div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
-<ejs-dialog id="exportDialog"  width='400px' header='Export Diagram' [target]='dlgTarget' isModal='true' [animationSettings]='dialogAnimationSettings'
-     showCloseIcon='true'>
-    <ng-template id="content">
-        <div id="exportDialogContent">
-            <div class="row">
-                <div class="row">
-                    File Name
-                </div>
-                <div class="row db-dialog-child-prop-row">
-                    <input type="text" id="exportfileName" [(ngModel)]='selectedItem.exportSettings.fileName'>
-                </div>
-            </div>
-            <div class="row db-dialog-prop-row">
-                <div class="col-xs-6 db-col-left">
-                    <div class="row">
-                        Format
-                    </div>
-                    <div class="row db-dialog-child-prop-row">
-                        <ejs-dropdownlist id="exportFormat" [(value)]="selectedItem.exportSettings.format" [dataSource]='dropDownDataSources.fileFormats'
-                            [fields]='dropdownListFields'>
-                        </ejs-dropdownlist>
-                    </div>
-                </div>
-                <div class="col-xs-6 db-col-right">
-                    <div class="row">
-                        Region
-                    </div>
-                    <div class="row db-dialog-child-prop-row">
-                        <ejs-dropdownlist id="exportRegion" [(value)]="selectedItem.exportSettings.region" [dataSource]='dropDownDataSources.diagramRegions'
-                            [fields]='dropdownListFields'>
-                        </ejs-dropdownlist>
-                    </div>
-                </div>
-            </div>
+  </div>
+<div id="diagramTemplateDiv" class="db-diagram-template-div" style="display: none">
+    <div class="db-diagram-template-image-div">
+        <div class="db-diagram-template-image">
         </div>
-    </ng-template>
+    </div>
+    <div class="db-diagram-template-text">
+        <span id="diagramTemplateText"></span>
+    </div>
+</div>
+
+<div id="diagramTemplateDiv1" style="display: none">
+    <div class="row">
+        <div class="col-xs-3 temp-left-pane">
+            <div class="row db-diagram-template-parent-text flowdiagram-template">
+                <span>Flow Chart</span>
+            </div>
+            <div class="row db-diagram-template-parent-text mindmap-template">
+                <span>Mind Map</span>
+            </div>
+            <div class="row db-diagram-template-parent-text orgchart-template">
+                <span>Org Chart</span>
+            </div>
+            <!-- <div class="row db-diagram-template-parent-text bpmn-template" style="height:24px">
+                <span>BPMN</span>
+            </div> -->
+        </div>
+        <div class="col-xs-9 diagramTemplates temp-right-pane" style="padding-left:0px;padding-right:0px">
+        </div>
+    </div>
+</div>
+
+<ejs-dialog id="openTemplateDialog" width='695px' height='470px' header='Create New Diagram' :target='app'
+    isModal="true" :animationSettings='dialogAnimationSettings' showCloseIcon='true' allowDragging='true' :visible='dialogVisibility'>
 </ejs-dialog>
+
+
+
+
+
 </div>
 
 </template>
@@ -268,8 +902,10 @@ import { ToolbarComponent, ToolbarPlugin } from '@syncfusion/ej2-vue-navigations
 import { DropDownButtonPlugin } from "@syncfusion/ej2-vue-splitbuttons";
 import { DialogPlugin } from '@syncfusion/ej2-vue-popups';
 import { DropDownListPlugin } from '@syncfusion/ej2-vue-dropdowns';
-import { RadioButtonPlugin } from "@syncfusion/ej2-vue-buttons";
+import { RadioButtonPlugin,CheckBoxPlugin,ButtonPlugin } from "@syncfusion/ej2-vue-buttons";
 import { NumericTextBoxPlugin } from "@syncfusion/ej2-vue-inputs";
+import { ColorPickerPlugin ,SliderPlugin} from "@syncfusion/ej2-vue-inputs";
+import { ListViewPlugin } from "@syncfusion/ej2-vue-lists";
 
 
 Vue.use(DropDownButtonPlugin);
@@ -281,7 +917,11 @@ Vue.use(DialogPlugin);
 Vue.use(DropDownListPlugin);
 Vue.use(RadioButtonPlugin);
 Vue.use(NumericTextBoxPlugin);
-
+Vue.use(ColorPickerPlugin);
+Vue.use(CheckBoxPlugin);
+Vue.use(ButtonPlugin);
+Vue.use(SliderPlugin);
+Vue.use(ListViewPlugin)
 //Initialize the flowshapes for the symbol palatte
 let flowshapes = [
    { id: 'Terminator', shape: { type: 'Flow', shape: 'Terminator' }, style: { strokeWidth: 2 } },
@@ -373,45 +1013,45 @@ let bpmnShapes = [
         ];
 let connectorSymbols = [
   {
-    id: "Link1",
-    type: "Orthogonal",
-    sourcePoint: { x: 0, y: 0 },
-    targetPoint: { x: 40, y: 40 },
-    targetDecorator: { shape: "Arrow", style: { fill: "black", strokeColor: "black" } },
-    style: { strokeWidth: 2, strokeColor: "black" }
-  },
-  {
-    id: "link3",
-    type: "Orthogonal",
-    sourcePoint: { x: 0, y: 0 },
-    targetPoint: { x: 40, y: 40 },
-    style: { strokeWidth: 2, strokeColor: "black" },
-    targetDecorator: { shape: "None" }
-  },
-  {
-    id: "Link21",
-    type: "Straight",
-    sourcePoint: { x: 0, y: 0 },
-    targetPoint: { x: 40, y: 40 },
-    targetDecorator: { shape: "Arrow", style: { fill: "black", strokeColor: "black" } },
-    style: { strokeWidth: 2, strokeColor: "black" }
-  },
-  {
-    id: "link23",
-    type: "Straight",
-    sourcePoint: { x: 0, y: 0 },
-    targetPoint: { x: 40, y: 40 },
-    style: { strokeWidth: 2, strokeColor: "black" },
-    targetDecorator: { shape: "None" }
-  },
-  {
-    id: "link33",
-    type: "Bezier",
-    sourcePoint: { x: 0, y: 0 },
-    targetPoint: { x: 40, y: 40 },
-    style: { strokeWidth: 2, strokeColor: "black" },
-    targetDecorator: { shape: "None" }
-  }
+                id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                targetDecorator: { shape: 'Arrow', style: { strokeWidth: 2 } }, style: { strokeWidth: 2 }
+            },
+            {
+                id: 'Link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                targetDecorator: { shape: 'Arrow', style: { strokeWidth: 2 } }, style: { strokeWidth: 2, strokeDashArray: '3,3' }
+            },
+            {
+                id: 'link3', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+            },
+            {
+                id: 'Link4', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                style: { strokeWidth: 2, strokeDashArray: '3,3' }, targetDecorator: { shape: 'None' }
+            },
+            {
+                id: 'Link21', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                targetDecorator: { shape: 'Arrow', style: { strokeWidth: 2 } }, style: { strokeWidth: 2 }
+            },
+            {
+                id: 'Link22', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                targetDecorator: { shape: 'Arrow', style: { strokeWidth: 2 } }, style: { strokeWidth: 2, strokeDashArray: '3,3' }
+            },
+            {
+                id: 'link23', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+            },
+            {
+                id: 'Link24', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                style: { strokeWidth: 2, strokeDashArray: '3,3' }, targetDecorator: { shape: 'None' }
+            },
+            {
+                id: 'link33', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+            },
+            {
+                id: 'Link34', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                style: { strokeWidth: 2, strokeDashArray: '3,3' }, targetDecorator: { shape: 'None' }
+            }
 ];
 
 export default {
@@ -539,6 +1179,7 @@ export default {
     Diagram:[BpmnDiagrams],
     SymbolPalette:[BpmnDiagrams]
     },
+
 }
 </script>
 
