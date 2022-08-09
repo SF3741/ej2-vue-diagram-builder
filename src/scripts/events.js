@@ -1,9 +1,7 @@
-var DiagramClientSideEvents = (function () {
-    function DiagramClientSideEvents(selectedItem, page) {
-        this.selectedItem = selectedItem;
-        this.page = page;
-    }
-    DiagramClientSideEvents.prototype.selectionChange = function (args) {
+
+
+
+   function selectionChange (args) {
         var diagram = selectedItem.selectedDiagram;
         if (selectedItem.preventSelectionChange || selectedItem.isLoading) {
             return;
@@ -71,7 +69,7 @@ var DiagramClientSideEvents = (function () {
         }
     };
 
-    DiagramClientSideEvents.prototype.multipleSelectionSettings = function (selectedItems) {
+   function multipleSelectionSettings(selectedItems) {
         selectedItem.utilityMethods.objectTypeChange('None');
         var showConnectorPanel = false, showNodePanel = false;
         var showTextPanel = false, showConTextPanel = false;
@@ -121,7 +119,7 @@ var DiagramClientSideEvents = (function () {
             }
         }
     };
-    DiagramClientSideEvents.prototype.singleSelectionSettings = function (selectedObject) {
+    function singleSelectionSettings (selectedObject) {
         var object = null;
         if (selectedObject instanceof ej.diagrams.Node) {
             selectedItem.utilityMethods.objectTypeChange('node');
@@ -166,7 +164,8 @@ var DiagramClientSideEvents = (function () {
             }
         }
     };
-    DiagramClientSideEvents.prototype.nodePositionChange = function (args) {
+
+    function nodePositionChange (args) {
         selectedItem.preventPropertyChange = true;
         selectedItem.nodeProperties.offsetX.value = (Math.round(args.newValue.offsetX * 100) / 100);
         selectedItem.nodeProperties.offsetY.value = (Math.round(args.newValue.offsetY * 100) / 100);
@@ -175,7 +174,7 @@ var DiagramClientSideEvents = (function () {
             selectedItem.preventPropertyChange = false;
         }
     };
-    DiagramClientSideEvents.prototype.nodeSizeChange = function (args) {
+  function nodeSizeChange (args) {
         selectedItem.preventPropertyChange = true;
         selectedItem.nodeProperties.width.value = (Math.round(args.newValue.width * 100) / 100);
         selectedItem.nodeProperties.height.value = (Math.round(args.newValue.height * 100) / 100);
@@ -184,17 +183,16 @@ var DiagramClientSideEvents = (function () {
             selectedItem.preventPropertyChange = false;
         }
     };
-    DiagramClientSideEvents.prototype.textEdit = function (args) {
+    function textEdit (args) {
         if (selectedItem.diagramType === 'MindMap') {
             setTimeout(function () { selectedItem.selectedDiagram.doLayout(); }, 10);
         }
         selectedItem.isModified = true;
     };
-
-    DiagramClientSideEvents.prototype.scrollChange = function (args) {
+    function scrollChange  (args) {
         selectedItem.scrollSettings.currentZoom = (args.newValue.CurrentZoom * 100).toFixed() + '%';
     };
-    DiagramClientSideEvents.prototype.nodeRotationChange = function (args) {
+   function nodeRotationChange(args) {
         selectedItem.preventPropertyChange = true;
         selectedItem.nodeProperties.rotateAngle.value = (Math.round(args.newValue.rotateAngle * 100) / 100);
         selectedItem.preventPropertyChange = false;
@@ -202,7 +200,7 @@ var DiagramClientSideEvents = (function () {
             selectedItem.isModified = true;
         }
     };
-    DiagramClientSideEvents.prototype.diagramContextMenuClick = function (args) {
+    function diagramContextMenuClick  (args) {
         var diagram = selectedItem.selectedDiagram;
         selectedItem.customContextMenu.updateBpmnShape(diagram, args.item);
         var text = args.item.text;
@@ -234,17 +232,17 @@ var DiagramClientSideEvents = (function () {
             }
         }
     };
-    DiagramClientSideEvents.prototype.diagramContextMenuOpen = function (args) {
+  function diagramContextMenuOpen(args) {
         var diagram = selectedItem.selectedDiagram;
         args.hiddenItems = args.hiddenItems.concat(selectedItem.customContextMenu.getHiddenMenuItems(diagram));
     };
-    DiagramClientSideEvents.prototype.dragEnter = function (args) {
+function dragEnter (args) {
         var obj = args.element;
         var ratio = 100 / obj.width;
         obj.width = 100;
         obj.height *= ratio;
     };
-    DiagramClientSideEvents.prototype.historyChange = function (args) {
+function historyChange (args) {
         var diagram = selectedItem.selectedDiagram;
         var toolbarContainer = document.getElementsByClassName('db-toolbar-container')[0];
         toolbarContainer.classList.remove('db-undo');
@@ -256,23 +254,20 @@ var DiagramClientSideEvents = (function () {
             toolbarContainer.classList.add('db-redo');
         }
     };
-    return DiagramClientSideEvents;
-}());
+
+
 
 var DiagramPropertyBinding = (function () {
-    function DiagramPropertyBinding(selectedItem, page) {
-        this.selectedItem = selectedItem;
-        this.page = page;
-    }
+
     DiagramPropertyBinding.prototype.pageBreaksChange = function (args) {
         if (args.event) {
             selectedItem.pageSettings.pageBreaks = args.checked;
             selectedItem.selectedDiagram.pageSettings.showPageBreaks = args.checked;
         }
-    }; 
+    };
     DiagramPropertyBinding.prototype.multiplePage = function (args) {
         if (args.event) {
-            selectedItem.printSettings.multiplePage = args.checked; 
+            selectedItem.printSettings.multiplePage = args.checked;
         }
     };
     DiagramPropertyBinding.prototype.paperListChange = function (args) {

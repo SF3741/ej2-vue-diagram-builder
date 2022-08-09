@@ -1,8 +1,6 @@
 var DropDownDataSources = (function () {
 
-    function DropDownDataSources() {
 
-    };
     DropDownDataSources.prototype.fileFormats = function () {
         var fileFormats = [
             { text: 'JPG', value: 'JPG' }, { text: 'PNG', value: 'PNG' },
@@ -136,7 +134,7 @@ var DropDownDataSources = (function () {
         ];
         return paperList;
     };
-    DropDownDataSources.prototype.listViewData = function () {
+    listViewData = function () {
         var listViewData = [
             { text: 'Flow', id: 'flowShapes', checked: true },
             { text: 'Basic', id: 'basicShapes', checked: true },
@@ -224,3 +222,9 @@ var DropDownDataSources = (function () {
     };
     return DropDownDataSources;
 }());
+export function DropDownDataSources(){
+
+}
+
+
+

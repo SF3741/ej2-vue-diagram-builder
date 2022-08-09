@@ -18,40 +18,40 @@ var downloadFile;
 var diagramThemes = new DiagramTheme(selectedItem);
 
 
-window.onload = function () {
+window.onload =  function () {
     diagram = document.getElementById("diagram").ej2_instances[0];
     symbolpalette = document.getElementById("symbolpalette").ej2_instances[0];
-    openTemplateDialog = document.getElementById("openTemplateDialog").ej2_instances[0];
-    saveDialog = document.getElementById("saveDialog").ej2_instances[0];
-    exportDialog = document.getElementById("exportDialog").ej2_instances[0];
-    printDialog = document.getElementById("printDialog").ej2_instances[0];
-    tooltipDialog = document.getElementById("tooltipDialog").ej2_instances[0];
-    tooltip = document.getElementById("tooltip").ej2_instances[0];
-    themeDialog = document.getElementById("themeDialog").ej2_instances[0];
-    moreShapesDialog = document.getElementById("moreShapesDialogContent").ej2_instances[0];
-    zoomCurrentValue = document.getElementById("btnZoomIncrement").ej2_instances[0];
-    selectedItem.selectedDiagram = document.getElementById("diagram").ej2_instances[0];
-    page.addNewPage();
-    diagramEvents.ddlTextPosition = document.getElementById("ddlTextPosition").ej2_instances[0];
-    customProperty.customPropertyDialog = document.getElementById("customPropertyDialog").ej2_instances[0];
-    diagramLayer.layerDialog = document.getElementById("layerDialog").ej2_instances[0];
-    hyperlinkDialog = document.getElementById("hyperlinkDialog").ej2_instances[0];
-    moreShapesList = document.getElementById("moreShapesList").ej2_instances[0];
-    defaultUpload = document.getElementById('defaultfileupload').ej2_instances[0];
+    // openTemplateDialog = document.getElementById("openTemplateDialog").ej2_instances[0];
+    // saveDialog = document.getElementById("saveDialog").ej2_instances[0];
+    // exportDialog = document.getElementById("exportDialog").ej2_instances[0];
+    // printDialog = document.getElementById("printDialog").ej2_instances[0];
+    // tooltipDialog = document.getElementById("tooltipDialog").ej2_instances[0];
+    // tooltip = document.getElementById("tooltip").ej2_instances[0];
+    // themeDialog = document.getElementById("themeDialog").ej2_instances[0];
+    // moreShapesDialog = document.getElementById("moreShapesDialogContent").ej2_instances[0];
+    // zoomCurrentValue = document.getElementById("btnZoomIncrement").ej2_instances[0];
+    // selectedItem.selectedDiagram = document.getElementById("diagram").ej2_instances[0];
+    // page.addNewPage();
+    // diagramEvents.ddlTextPosition = document.getElementById("ddlTextPosition").ej2_instances[0];
+    // customProperty.customPropertyDialog = document.getElementById("customPropertyDialog").ej2_instances[0];
+    // diagramLayer.layerDialog = document.getElementById("layerDialog").ej2_instances[0];
+    // hyperlinkDialog = document.getElementById("hyperlinkDialog").ej2_instances[0];
+    // moreShapesList = document.getElementById("moreShapesList").ej2_instances[0];
+    // defaultUpload = document.getElementById('defaultfileupload').ej2_instances[0];
 
-    downloadFile = new DownloadExampleFiles(selectedItem);
-    selectedItem.utilityMethods.page = page;
-    selectedItem.utilityMethods.tempDialog = document.getElementById("openTemplateDialog").ej2_instances[0];
-    selectedItem.utilityMethods.toolbarEditor = document.getElementById("toolbarEditor").ej2_instances[0];
+    // downloadFile = new DownloadExampleFiles(selectedItem);
+    // selectedItem.utilityMethods.page = page;
+    // selectedItem.utilityMethods.tempDialog = document.getElementById("openTemplateDialog").ej2_instances[0];
+    // selectedItem.utilityMethods.toolbarEditor = document.getElementById("toolbarEditor").ej2_instances[0];
 
-    OrgChartUtilityMethods.uploadDialog = document.getElementById("fileUploadDialog").ej2_instances[0];
-    OrgChartUtilityMethods.customPropertyDialog = document.getElementById("customPropertyDialog").ej2_instances[0];
+    // OrgChartUtilityMethods.uploadDialog = document.getElementById("fileUploadDialog").ej2_instances[0];
+    // OrgChartUtilityMethods.customPropertyDialog = document.getElementById("customPropertyDialog").ej2_instances[0];
 
-    CommonKeyboardCommands.selectedItem = selectedItem;
-    CommonKeyboardCommands.page = page;
+    // CommonKeyboardCommands.selectedItem = selectedItem;
+    // CommonKeyboardCommands.page = page;
 
-    document.getElementById('btnHideToolbar').onclick = hideMenuBar.bind(this);
-    document.getElementById('diagramContainerDiv').onmouseleave = diagramThemes.setNodeOldStyles.bind(diagramThemes);
+    // document.getElementById('btnHideToolbar').onclick = hideMenuBar.bind(this);
+    // document.getElementById('diagramContainerDiv').onmouseleave = diagramThemes.setNodeOldStyles.bind(diagramThemes);
     document.onmouseover = menumouseover.bind(this);
 
 
@@ -2107,7 +2107,7 @@ function zoomChange(args) {
         diagram.zoomTo(zoom);
     }
 }
-function beforeItemRender(args) {
+export function beforeItemRender(args) {
     var shortCutText = getShortCutKey(args.item.text);
     if (shortCutText) {
         var shortCutSpan = document.createElement('span');
@@ -2127,7 +2127,7 @@ function beforeItemRender(args) {
     }
 }
 
-function getShortCutKey(menuItem) {
+export function getShortCutKey(menuItem) {
     var shortCutKey = navigator.platform.indexOf('Mac') > -1 ? 'Cmd' : 'Ctrl';
     switch (menuItem) {
         case 'New':
@@ -2188,7 +2188,7 @@ function getShortCutKey(menuItem) {
     return shortCutKey;
 }
 
-function contextMenuClick (args) {
+export function contextMenuClick (args) {
     var buttonElement = document.getElementsByClassName('e-btn-hover')[0];
     if (buttonElement) {
         buttonElement.classList.remove('e-btn-hover');
@@ -2263,7 +2263,7 @@ function contextMenuClick (args) {
     }
 }
 
-function menuClick(args) {
+export function menuClick(args) {
     var buttonElement = document.getElementsByClassName('e-btn-hover')[0];
     if (buttonElement) {
         buttonElement.classList.remove('e-btn-hover');
@@ -2366,7 +2366,7 @@ function menuClick(args) {
     diagram.dataBind();
 }
 
-function executeEditMenu(diagram, commandType) {
+export function executeEditMenu(diagram, commandType) {
     var key = '';
     switch (commandType.toLowerCase()) {
         case 'undo':
@@ -2405,7 +2405,7 @@ function executeEditMenu(diagram, commandType) {
     }
 }
 
-function toolbarEditorClick(args) {
+export function toolbarEditorClick(args) {
     var diagram = selectedItem.selectedDiagram;
     var commandType = args.item.tooltipText.replace(/[' ']/g, '').toLowerCase();
     switch (commandType) {
@@ -2490,7 +2490,7 @@ function toolbarEditorClick(args) {
     }
 }
 
-function showColorPicker (propertyName, toolbarName) {
+export function showColorPicker (propertyName, toolbarName) {
     var fillElement =
         document.getElementById(propertyName).parentElement.getElementsByClassName('e-dropdown-btn')[0];
     fillElement.click();
@@ -2500,7 +2500,7 @@ function showColorPicker (propertyName, toolbarName) {
     popupElement.style.top = (bounds.top + 40) + 'px';
 }
 
-function showHideLayers () {
+export function showHideLayers () {
     var btnWindow = document.getElementById('btnWindowMenu');
     var iconCss = btnWindow.ej2_instances[0].items[3].iconCss;
     if (!this.initLayerPanel) {
@@ -2516,7 +2516,7 @@ function showHideLayers () {
     btnWindow.ej2_instances[0].items[3].iconCss = iconCss ? '' : 'sf-icon-Selection';
 }
 
-function showHideThemes () {
+export function showHideThemes () {
     var btnWindow = document.getElementById('btnWindowMenu');
     var iconCss = btnWindow.ej2_instances[0].items[5].iconCss;
     if (iconCss) {
@@ -2527,7 +2527,7 @@ function showHideThemes () {
     btnWindow.ej2_instances[0].items[5].iconCss = iconCss ? '' : 'sf-icon-Selection';
 }
 
-function removeSelectedToolbarItem (args) {
+export function removeSelectedToolbarItem (args) {
     var toolbarEditor = selectedItem.utilityMethods.toolbarEditor;
     for (var i = 0; i < toolbarEditor.items.length; i++) {
         var item = toolbarEditor.items[i];
@@ -2540,7 +2540,7 @@ function removeSelectedToolbarItem (args) {
     document.getElementById('btnDrawConnector').classList.remove('tb-item-selected');
 }
 
-function lockObject (args) {
+export function lockObject (args) {
     selectedItem.isModified = true;
     var diagram = selectedItem.selectedDiagram;
     for (var i = 0; i < diagram.selectedItems.nodes.length; i++) {

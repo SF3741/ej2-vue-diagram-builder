@@ -141,13 +141,14 @@
                 <div id='overviewspan' class="db-overview">
                     <span></span>
                 </div>
-              <div class="db-palette-more-shapes-text" @click="moreShapesClick()">More Shapes </div>
+              <div class="db-palette-more-shapes-text" click="moreShapesClick()">More Shapes </div>
             </div>
         </div>
         <div class='main-content' role='main'>
             <div class="db-diagram-container">
                 <div id="diagramContainerDiv" class='db-current-diagram-container'>
-                   <ejs-diagram id="diagram" :width="width" :height="height"></ejs-diagram>
+                   <ejs-diagram id="diagram" :width="width" :height="height" :snapSettings="snapSettings" :pageSettings="pageSettings"
+                   :scrollSettings="scrollSettings"></ejs-diagram>
                 </div>
                 <div class="db-more-diagram-options-container">
                     <div id="pageOptionList">
@@ -161,7 +162,7 @@
                             Page Settings
                         </div>
                     <div class="row db-prop-row">
-                            <ejs-dropdownlist id= "pageSettingsList" :dataSource="dataSource"
+                            <ejs-dropdownlist id= "pageSettingsList" :dataSource="paperList"
                                 :fields='fields' >
                             </ejs-dropdownlist>
                     </div>
@@ -362,7 +363,7 @@
                                     <div class="col-xs-4 db-col-left">
                                         <span class="db-prop-text-style">Stroke Width</span>
                                     </div>
-                                </div> -->
+                                </div>
                           <div class="row">
                                     <div class="col-xs-4 db-col-left">
                                         <div class="db-color-container">
@@ -834,6 +835,260 @@
         </div>
     </div>
   </div>
+
+<ejs-dialog id="exportDialog" width='400px' header='Export Diagram' :target='dlgTarget' isModal='true' :animationSettings='dialogAnimationSettings'
+    :buttons='exportingButtons' :visible='dialogVisibility' showCloseIcon='true'>
+
+        <div id="exportDialogContent">
+            <div class="row">
+                <div class="row">
+                    File Name
+                </div>
+                <div class="row db-dialog-child-prop-row">
+                    <input type="text" id="exportfileName">
+                </div>
+            </div>
+            <div class="row db-dialog-prop-row">
+                <div class="col-xs-6 db-col-left">
+                    <div class="row">
+                        Format
+                    </div>
+                    <div class="row db-dialog-child-prop-row">
+                        <ejs-dropdownlist id="exportFormat"  :dataSource='fileFormats'
+                            :fields='dropdownListFields'>
+                        </ejs-dropdownlist>
+                    </div>
+                </div>
+                <div class="col-xs-6 db-col-right">
+                    <div class="row">
+                        Region
+                    </div>
+                    <div class="row db-dialog-child-prop-row">
+                        <ejs-dropdownlist id="exportRegion" :dataSource='diagramRegions'
+                            :fields ='dropdownListFields'>
+                        </ejs-dropdownlist>
+                    </div>
+                </div>
+            </div>
+        </div>
+</ejs-dialog>
+<ejs-dialog id="printDialog" width='335px' header='Print Diagram' :target='dlgTarget' isModal='true' :animationSettings='dialogAnimationSettings'
+    :buttons='printingButtons' :visible='dialogVisibility' showCloseIcon='true'>
+
+        <div id="printDialogContent">
+            <div class="row">
+                <div class="row">
+                    Region
+                </div>
+                <div class="row db-dialog-child-prop-row">
+                    <ejs-dropdownlist :dataSource='diagramRegions' :fields='dropdownListFields'>
+                    </ejs-dropdownlist>
+                </div>
+            </div>
+            <div class="row db-dialog-prop-row">
+                <div class="row">
+                    Print Settings
+                </div>
+                <div class="row db-dialog-child-prop-row">
+                    <ejs-dropdownlist :dataSource='paperList' :fields='dropdownListFields' >
+                    </ejs-dropdownlist>
+                </div>
+            </div>
+            <div id="printCustomSize" class="row db-dialog-prop-row" style="display:none; height: 28px;">
+                <div class="col-xs-6 db-col-left">
+                    <div class="db-text-container">
+                        <div class="db-text">
+                            <span>W</span>
+                        </div>
+                        <div class="db-text-input">
+                            <ejs-numerictextbox id="printPageWidth" min="100" step="1" format="n0" ></ejs-numerictextbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 db-col-right">
+                    <div class="db-text-container">
+                        <div class="db-text">
+                            <span>H</span>
+                        </div>
+                        <div class="db-text-input">
+                            <ejs-numerictextbox id="printPageHeight" min="100" step="1" format="n0" ></ejs-numerictextbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="printOrientation" class="row db-dialog-prop-row" style="height: 28px; padding: 5px 0px;">
+                <div class="col-xs-3 db-prop-col-style" style="margin-right: 8px;">
+                    <ejs-radiobutton id='printPortrait' label="Portrait" name="printSettings" >
+                    </ejs-radiobutton>
+                </div>
+                <div class="col-xs-3 db-prop-col-style">
+                    <ejs-radiobutton id='printLandscape' label="Landscape" name="printSettings">
+                    </ejs-radiobutton>
+                </div>
+            </div>
+            <div class="row db-dialog-prop-row" style="margin-top: 16px">
+                <ejs-checkbox id='printMultiplePage' label="Scale to fit 1 page" ></ejs-checkbox>
+            </div>
+        </div>
+</ejs-dialog>
+
+<ejs-dialog id="fileUploadDialog"  width='500px' height='485px' header='Upload File' :target='dlgTarget'
+    isModal="true" :animationSettings='dialogAnimationSettings' :buttons='uploadButtons' showCloseIcon='true' allowDragging='true'
+    :visible='dialogVisibility'>
+
+        <div id="uploadDialogContent" class="db-upload-content firstPage">
+            <ejs-tooltip  :position='tooltipPosition'>
+                <div id='uploadInformationDiv' class="row db-dialog-prop-row" style="margin-top: 0px;">
+                    <div class="row">
+                        <div class="row" style="font-size: 12px;font-weight: 500;color: black;">
+                            <div class="db-info-text">
+                                Choose Format
+                            </div>
+                            <div class='db-format-type' style="display: none">
+                            </div>
+                        </div>
+                        <div class="row db-dialog-child-prop-row">
+                            <div class="col-xs-3 db-prop-col-style">
+                                <ejs-radiobutton id='csvFormat' label="csv" name="uploadFileFormat" checked="true" >
+                                </ejs-radiobutton>
+                            </div>
+                            <div class="col-xs-3 db-prop-col-style">
+                                <ejs-radiobutton id='xmlFormat' label="xml" name="uploadFileFormat" >
+                                </ejs-radiobutton>
+                            </div>
+                            <div class="col-xs-3 db-prop-col-style">
+                                <ejs-radiobutton id='jsonFormat' label="json" name="uploadFileFormat" >
+                                </ejs-radiobutton>
+                            </div>
+                            <!-- <ejs-dropdownlist value="CSV" [dataSource]='dropDownDataSources.importFormat' [fields]='dropdownListFields'>
+                        </ejs-dropdownlist> -->
+                        </div>
+                    </div>
+                    <div class="row db-dialog-prop-row" style="padding: 10px; background-color: #FFF7B5; border: 1px solid #FFF7B5">
+                        <div class="db-info-parent" style="width: 10%; background-color:transparent; height: 60px;">
+                        </div>
+                        <div style="float:left; width: calc(90% - 5px)">
+                            <ul style="padding-left: 25px; margin-bottom: 0px">
+                                <li style="margin-bottom: 5px">
+                                    <span id="descriptionText1" style="color: #515151;font-size: 11px;line-height: 15px;">Make
+                                        sure that the every column of your table has a header</span>
+                                </li>
+                                <li>
+                                    <span id="descriptionText2" style="color: #515151;font-size: 11px;line-height: 15px;">Each
+                                        employee should have a reporting person (except for top most employee of the organization)
+                                        and it should be indicated by any field from your data source.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row db-dialog-prop-row">
+                        <ejs-button id="btnDownloadFile"  >
+                        </ejs-button>
+                    </div>
+                    <div class="row">
+                        <div id="dropArea">
+                            <span id="dropRegion" class="droparea"> Drop files here or
+                                <a href="" id="browseFile">
+                                    <u>Browse</u>
+                                </a>
+                            </span>
+                            <ejs-uploader  id='defaultfileupload' >
+
+                            </ejs-uploader>
+                        </div>
+                    </div>
+                </div>
+                <div id='parentChildRelationDiv' class="row db-dialog-prop-row">
+                    <div class="row db-dialog-child-prop-row" style="margin-top:20px">
+                        <div class="row">
+                            <div class="db-info-text">
+                                Employee Id
+                            </div>
+                            <div class='db-info-style db-employee-id'>
+                            </div>
+                        </div>
+                        <div class="row db-dialog-child-prop-row">
+                            <ejs-dropdownlist id="employeeId"  :dataSource='dataSourceColumns'
+                                :fields='dropdownListFields'>
+                            </ejs-dropdownlist>
+                        </div>
+                    </div>
+                    <div class="row db-dialog-prop-row">
+                        <div class="row">
+                            <div class="db-info-text">
+                                Supervisor Id
+                            </div>
+                            <div class='db-info-style db-supervisor-id'>
+                            </div>
+                        </div>
+                        <div class="row db-dialog-child-prop-row">
+                            <ejs-dropdownlist id="superVisorId"  :dataSource='dataSourceColumns'
+                                :fields='dropdownListFields'>
+                            </ejs-dropdownlist>
+                        </div>
+                    </div>
+                </div>
+                <div id='moreInformationDiv' class="row db-dialog-prop-row">
+                    <div id='bindingFields' class="row">
+                        <div class="row">
+                            <div class="db-info-text">
+                                Name
+                            </div>
+                            <div class='db-info-style db-nameField-id'>
+                            </div>
+                        </div>
+                        <div class="row db-dialog-child-prop-row">
+                            <ejs-dropdownlist id="orgNameField"  :dataSource='dataSourceColumns'
+                                :fields='dropdownListFields'></ejs-dropdownlist>
+                        </div>
+                    </div>
+                    <div id='bindingFields' class="row db-dialog-prop-row" style="margin-top:20px">
+                        <div class="row">
+                            <div class="db-info-text">
+                                Binding Fields
+                            </div>
+                            <div class='db-info-style db-bindingField-id'>
+                            </div>
+                        </div>
+                        <div class="row db-dialog-child-prop-row">
+                            <ejs-multiselect id="orgBindingFields"  :dataSource='dataSourceColumns'
+                                mode='Delimiter' :fields='dropdownListFields'></ejs-multiselect>
+                        </div>
+                    </div>
+                    <div id='imageFields' class="row db-dialog-prop-row">
+                        <div class="row">
+                            <div class="db-info-text">
+                                Image Field
+                            </div>
+                            <div class='db-info-style db-imageField-id'>
+                            </div>
+                        </div>
+                        <div class="row db-dialog-child-prop-row">
+                            <ejs-dropdownlist id="orgImageField"  :dataSource='dataSourceColumns'
+                                :fields='dropdownListFields'>
+                            </ejs-dropdownlist>
+                        </div>
+                    </div>
+                    <div id='additionalFields' class="row db-dialog-prop-row">
+                        <div class="row">
+                            <div class="db-info-text">
+                                Additional Fields
+                            </div>
+                            <div class='db-info-style db-additionalField-id'>
+                            </div>
+                        </div>
+                        <div class="row db-dialog-child-prop-row">
+                            <ejs-multiselect id="orgAdditionalField"  :dataSource='dataSourceColumns'
+                                mode='Delimiter' :fields='dropdownListFields'></ejs-multiselect>
+                        </div>
+                    </div>
+                </div>
+            </ejs-tooltip>
+        </div>
+
+</ejs-dialog>
+
+
 <div id="diagramTemplateDiv" class="db-diagram-template-div" style="display: none">
     <div class="db-diagram-template-image-div">
         <div class="db-diagram-template-image">
@@ -869,12 +1124,24 @@
     isModal="true" :animationSettings='dialogAnimationSettings' showCloseIcon='true' allowDragging='true' :visible='dialogVisibility'>
 </ejs-dialog>
 
+<ejs-dialog id="moreShapesDialog"  width='695px' height='470px' header='Shapes' :target='dlgTarget' isModal="true"
+    :animationSettings='dialogAnimationSettings' showCloseIcon='true' allowDragging='true' :buttons='moreShapesButtons' :visible='dialogVisibility'>
 
-
+        <div id="moreShapesDialogContent">
+            <div class="row">
+                <div class="col-xs-3 temp-left-pane">
+                    <ejs-listview  id='moreShapesList' :fields='listViewFields' :dataSource='listViewData'   showCheckBox='true' >
+                    </ejs-listview>
+                </div>
+                <div class="col-xs-9 diagramTemplates temp-right-pane" style="padding-left:0px;padding-right:0px">
+                    <img id="shapePreviewImage" src="./assets/dbstyle/shapes_images/flow.png" />
+                </div>
+            </div>
+        </div>
+</ejs-dialog>
 
 
 </div>
-
 </template>
 
 
@@ -906,8 +1173,8 @@ import { RadioButtonPlugin,CheckBoxPlugin,ButtonPlugin } from "@syncfusion/ej2-v
 import { NumericTextBoxPlugin } from "@syncfusion/ej2-vue-inputs";
 import { ColorPickerPlugin ,SliderPlugin} from "@syncfusion/ej2-vue-inputs";
 import { ListViewPlugin } from "@syncfusion/ej2-vue-lists";
-
-
+import { MultiSelectPlugin } from "@syncfusion/ej2-vue-dropdowns";
+import { UploaderPlugin } from '@syncfusion/ej2-vue-inputs';
 Vue.use(DropDownButtonPlugin);
 Vue.use(DiagramPlugin);
 Vue.use(SymbolPalettePlugin);
@@ -922,6 +1189,8 @@ Vue.use(CheckBoxPlugin);
 Vue.use(ButtonPlugin);
 Vue.use(SliderPlugin);
 Vue.use(ListViewPlugin)
+Vue.use(MultiSelectPlugin);
+Vue.use(UploaderPlugin);
 //Initialize the flowshapes for the symbol palatte
 let flowshapes = [
    { id: 'Terminator', shape: { type: 'Flow', shape: 'Terminator' }, style: { strokeWidth: 2 } },
@@ -1114,12 +1383,105 @@ export default {
       helpitems:[
         { text: 'Keyboard Shortcuts' }, { text: 'Documentation' }
       ],
-      dataSource :[
+      fileFormats : [
+            { text: 'JPG', value: 'JPG' }, { text: 'PNG', value: 'PNG' },
+            { text: 'BMP', value: 'BMP' }, { text: 'SVG', value: 'SVG' }
+        ],
+        diagramRegions :[
+            { text: 'Content', value: 'Content' }, { text: 'PageSettings', value: 'PageSettings' }
+        ],
+        importFormat : [
+            { text: 'CSV', value: 'CSV' }, { text: 'XML', value: 'XML' }, { text: 'JSON', value: 'JSON' }
+        ],
+        paperList:
+        [
         { text: 'Letter (8.5 in x 11 in)', value: 'Letter' }, { text: 'Legal (8.5 in x 14 in)', value: 'Legal' },
         { text: 'Tabloid (279 mm x 432 mm)', value: 'Tabloid' }, { text: 'A3 (297 mm x 420 mm)', value: 'A3' },
         { text: 'A4 (210 mm x 297 mm)', value: 'A4' }, { text: 'A5 (148 mm x 210 mm)', value: 'A5' },
         { text: 'A6 (105 mm x 148 mm)', value: 'A6' }, { text: 'Custom', value: 'Custom' },
       ],
+      borderStyles : [
+            { text: 'None', value: 'None', className: 'ddl-svg-style ddl_linestyle_none' },
+            { text: '1,2', value: '1,2', className: 'ddl-svg-style ddl_linestyle_one_two' },
+            { text: '3,3', value: '3,3', className: 'ddl-svg-style ddl_linestyle_three_three' },
+            { text: '5,3', value: '5,3', className: 'ddl-svg-style ddl_linestyle_five_three' },
+            { text: '4,4,1', value: '4,4,1', className: 'ddl-svg-style ddl_linestyle_four_four_one' }
+        ],
+  fontFamilyList : [
+            { text: 'Arial', value: 'Arial' },
+            { text: 'Aharoni', value: 'Aharoni' },
+            { text: 'Bell MT', value: 'Bell MT' },
+            { text: 'Fantasy', value: 'Fantasy' },
+            { text: 'Times New Roman', value: 'Times New Roman' },
+            { text: 'Segoe UI', value: 'Segoe UI' },
+            { text: 'Verdana', value: 'Verdana' },
+        ],
+        decoratorList : [
+            { text: 'None', value: 'None' },
+            { text: 'Arrow', value: 'Arrow' },
+            { text: 'Diamond', value: 'Diamond' },
+            { text: 'OpenArrow', value: 'OpenArrow' },
+            { text: 'Circle', value: 'Circle' },
+            { text: 'Square', value: 'Square' },
+            { text: 'Fletch', value: 'Fletch' },
+            { text: 'OpenFetch', value: 'OpenFetch' },
+            { text: 'IndentedArrow', value: 'IndentedArrow' },
+            { text: 'OutdentedArrow', value: 'OutdentedArrow' },
+            { text: 'DoubleArrow', value: 'DoubleArrow' }
+        ],
+        textPosition : [
+            { text: 'TopLeft', value: 'TopLeft' }, { text: 'TopCenter', value: 'TopCenter' },
+            { text: 'TopRight', value: 'TopRight' }, { text: 'MiddleLeft', value: 'MiddleLeft' },
+            { text: 'Center', value: 'Center' }, { text: 'MiddleRight', value: 'MiddleRight' },
+            { text: 'BottomLeft', value: 'BottomLeft' }, { text: 'BottomCenter', value: 'BottomCenter' },
+            { text: 'BottomRight', value: 'BottomRight' },
+        ],
+    listViewData:[
+         { text: 'Flow', id: 'flowShapes', checked: true },
+            { text: 'Basic', id: 'basicShapes', checked: true },
+            { text: 'BPMN', id: 'bpmnShapes', checked: true },
+            { text: 'Connectors', id: 'connectorsShapes', checked: true },
+            { text: 'Electrical', id: 'electricalShapes', checked: false },
+            { text: 'Network', id: 'networkShapes', checked: false },
+            { text: 'Floorplan', id: 'floorShapes', checked: false },
+      ],
+      lineTypes : [
+            { text: 'Straight', value: 'Straight' }, { text: 'Orthogonal', value: 'Orthogonal' },
+            { text: 'Bezier', value: 'Bezier' }
+        ],
+        gradientDirections : [
+            { text: 'BottomToTop', value: 'BottomToTop' }, { text: 'TopToBottom', value: 'TopToBottom' },
+            { text: 'RightToLeft', value: 'RightToLeft' }, { text: 'LeftToRight', value: 'LeftToRight' }
+        ],
+        drawShapesList : [
+            { iconCss: 'sf-icon-Square', text: 'Rectangle' },
+            { iconCss: 'sf-icon-Ellipse', text: 'Ellipse' },
+            { iconCss: 'sf-icon-Triangle', text: 'Polygon' }
+        ],
+        drawConnectorsList :[
+            { iconCss: 'sf-icon-StraightLine', text: 'Straight Line' },
+            { iconCss: 'sf-icon-ConnectorMode', text: 'Orthogonal Line' },
+            { iconCss: 'sf-icon-BeizerLine', text: 'Bezier' }
+        ],
+        orderCommandsList : [
+            { iconCss: 'sf-icon-Sendback', text: 'Send To Back' },
+            { iconCss: 'sf-icon-BringFront', text: 'Bring To Front' },
+            { iconCss: 'sf-icon-SendBackward', text: 'Send Backward' },
+            { iconCss: 'sf-icon-BringForward', text: 'Bring Forward' },
+        ],
+        mindmapLevels :[
+            { text: 'Root', value: 'Level0' }, { text: 'Level1', value: 'Level1' },
+            { text: 'Level2', value: 'Level2' }, { text: 'Level3', value: 'Level3' },
+            { text: 'Level4', value: 'Level4' }, { text: 'Level5', value: 'Level5' },
+        ],
+        zoomMenuItems : [
+            { text: '400%' }, { text: '300%' }, { text: '200%' }, { text: '150%' },
+            { text: '100%' }, { text: '75%' }, { text: '50%' }, { text: '25%' }, { separator: true },
+            { text: 'Fit To Screen' }
+
+        ],
+      dlgTarget:document.body,
+      dialogAnimationSettings:{effect :'None'},
       min:"100",
       format:"n0",
       width: "100%",
@@ -1181,6 +1543,7 @@ export default {
     },
 
 }
+
 </script>
 
 <style>
